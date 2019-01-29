@@ -1,69 +1,111 @@
-/* ДЗ 1 - Функции */
+function isAllTrue(array, fn ) {
+    var x = 0; 
+    var y = 0;
+    if((array == 0 ) || (array.lenght <= 0 )) {
+        throw new Error ("empty array");
+    }else if (typeof fn != 'function'){
+        throw new Error("fn is not a function");
+    } else {
+        for ( var i = 0; i < array.lenght; i++){
+            var z = fn(array[i]);
+            if(z == false) {
+                y++;
 
-/*
- Задание 1:
-
- Функция должна принимать один аргумент и возвращать его
- */
-function returnFirstArgument(arg) {
-    return arg;
-}
-
-/*
- Задание 2:
-
- Функция должна принимать два аргумента и возвращать сумму переданных значений
- Значение по умолчанию второго аргумента должно быть 100
- */
-function defaultParameterValue(a, b = 100) {
-    return a + b;
-
-}
-
-/*
- Задание 3:
-
- Функция должна возвращать все переданные в нее аргументы в виде массива
- Количество переданных аргументов заранее неизвестно
- */
-function returnArgumentsArray() {
-    var result = [];
-    for( var i = 0; i < arguments.length; i++){
-        result[i] = arguments[i];
+            }else if ( z == true) {
+                x++;
+            }
+            if (array.lenght == x ){
+                return true;
+            } else if (y > 0) {
+                return false;
+            }
+        }
     }
-        return result;
+};
 
-}
+function isSomeTrue(array, fn) {
 
-/*
- Задание 4:
+    var x = 0;
 
- Функция должна принимать другую функцию и возвращать результат вызова переданной функции
- */
-function returnFnResult(fn) {
-    return fn ();
-}
+    if (( array == 0 ) || (array.length <= 0)) {
+        throw new Error("empty array");
+    } else if (typeof fn != 'function') {
+        throw new Error("fn is not a function");
+    } else {
 
-/*
- Задание 5:
+        for (var i = 0; i < array.length; i++) {
+            var z = fn(array[i]);
+            if (z == true) {
+                x++;
+            }
+        }
 
- Функция должна принимать число (значение по умолчанию - 0) и возвращать функцию (F)
- При вызове F, переданное число должно быть увеличено на единицу и возвращено из F
- */
-function returnCounter(x = 0) {
-    return function F() {
-        return ++x;
+        if (x < 1) {
+            return false;
+        } else (x >= 1)
+        {
+            return true;
+        }
     }
-}
+};
+function returnBadArguments(fn) {
+    var x = new Array();
+    var z = '';
+    if (typeof fn != 'function') {
+        throw new Error("fn is not a function");
+    }
+    for (var i = 1; i < arguments.length; i++) {
+        try {
+            z = fn(arguments[i]);
+        } catch (e) {
+            x.push(arguments[i]);
+        }
+    }
+    return x;
+};
+function calculator(number=0) {
 
-/*
- Задание 6 *:
+    if (typeof number != 'number') {
+        throw new Error("number is not a number");
+    }
 
- Функция должна принимать другую функцию (F) и некоторое количество дополнительных аргументов
- Функция должна привязать переданные аргументы к функции F и вернуть получившуюся функцию
- */
-function bindFunction(F, a, b) {
-    F = F.bind(null, a, b);
-    return F;
-}
-
+    var ob = {
+        sum: function () {
+            for (var i = 0; i < arguments.length; i++) {
+                if (arguments[i] === 0) {
+                    throw new Error("division by 0");
+                }
+                number += arguments[i];
+            }
+            return number;
+        },
+        dif: function () {
+            for (var i = 0; i < arguments.length; i++) {
+                if (arguments[i] === 0) {
+                    throw new Error("division by 0");
+                }
+                number -= arguments[i];
+            }
+            return number;
+        },
+        div: function () {
+            for (var i = 0; i < arguments.length; i++) {
+                if (arguments[i] === 0) {
+                    throw new Error("division by 0");
+                }
+                number /= arguments[i];
+            }
+            return number;
+        },
+        mul: function () {
+            for (var i = 0; i < arguments.length; i++) {
+                if (arguments[i] === 0) {
+                    throw new Error("division by 0");
+                }
+                number *= arguments[i];
+            }
+            return number;
+        }
+    }
+    return ob;
+};
