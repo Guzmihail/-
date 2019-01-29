@@ -67,11 +67,3 @@ function bindFunction(F, a, b) {
     return F;
 }
 
-export{
-    returnFirstArgument,
-    defaultParameterValue,
-    returnArgumentsArray,
-    returnFnResult,
-    returnCounter,
-    bindFunction
-};
